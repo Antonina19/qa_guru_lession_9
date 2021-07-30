@@ -66,3 +66,18 @@ task smoke(type: Test) {
         includeTags 'smoke'
     }
 }
+
+task properties_tests(type: Test) {
+    systemProperties(System.getProperties()) // чтобы передаваемые значения из консоле приходили в тест
+    println "[build.gradle]: properties tests here"
+    println "[build.gradle]: " + System.getProperty("browser")
+// gradle clean properties_tests -Dbrowser=safari
+//->
+// [build.gradle]: properties tests here
+// [build.gradle]: safari
+    useJUnitPlatform {
+        includeTags 'properties'
+    }
+}
+
+
