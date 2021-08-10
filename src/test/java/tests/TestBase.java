@@ -13,12 +13,16 @@ public class TestBase {
     static void setup() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
+        //System.setProperty("selenoid.url", "http://localhost:4444/wd/hub"); // для запуска тестов через докер
+        //System.setProperty("selenoid.url", "http://test:test-password@localhost:4445/wd/hub"); // для запуска тестов через докер с настройками ggr
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
+        capabilities.setCapability("enableVNC", true); // для запуска тестов через докер
+        capabilities.setCapability("enableVideo", true); // для запуска тестов через докер
 
         Configuration.browserCapabilities = capabilities;
         Configuration.startMaximized = true;
+        //Configuration.remote = System.getProperty("selenoid.url"); // для запуска тестов через докер
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
     }
 
